@@ -5,6 +5,9 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import about from "./components/about";
+import contact from "./components/contact";
+
 
 
 
@@ -19,9 +22,10 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/register" component={Register} />  
           {/* at localhost:3000/register, render the Register component. */}
-
           <Route exact path="/login" component={Login} />
-
+          <Route exact path="/about" component={about} />
+          <Route exact path="/contact" component={contact} />
+         
             
           </div>
           </Router>

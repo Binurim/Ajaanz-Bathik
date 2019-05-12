@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';   //Use axios to make HTTPRequests within certain action
+
+
 class Register extends Component {
   constructor() {
     super();
@@ -15,13 +18,17 @@ onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 onSubmit = e => {
-    e.preventDefault();
+    e.preventDefault();//stop the page from reloading when the submit is clicked
 const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
     };
+
+    axios.post('http://localhost:5000/api/users/register', newUser)
+    .then(res => console.log(res.data));
+
 console.log(newUser);
   };
 render() {
@@ -30,10 +37,12 @@ return (
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
+
             <Link to="/" className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i> Back to
               home
             </Link>
+
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Register</b> below
@@ -42,7 +51,9 @@ return (
                 Already have an account? <Link to="/login">Log in</Link>
               </p>
             </div>
+
             <form noValidate onSubmit={this.onSubmit}>
+
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -53,6 +64,7 @@ return (
                   />
                   <label htmlFor="name">Name</label>
                 </div>
+
                 <div className="input-field col s12">
                   <input
                     onChange={this.onChange}
@@ -63,6 +75,7 @@ return (
                   />
                   <label htmlFor="email">Email</label>
                 </div>
+
                 <div className="input-field col s12">
                   <input
                     onChange={this.onChange}
@@ -73,6 +86,7 @@ return (
                   />
                   <label htmlFor="password">Password</label>
                 </div>
+
                 <div className="input-field col s12">
                   <input
                     onChange={this.onChange}
@@ -83,6 +97,7 @@ return (
                   />
                   <label htmlFor="password2">Confirm Password</label>
                 </div>
+
                 <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                   <button
                     style={{
@@ -97,11 +112,14 @@ return (
                     Sign up
                   </button>
                 </div>
+
               </form>
+              
             </div>
           </div>
         </div>
       );
     }
   }
+
   export default Register;

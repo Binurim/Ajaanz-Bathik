@@ -8,15 +8,21 @@ class Navbar extends Component {
           <div className="nav-wrapper yellow">
             <Link
               to="/"
-              style={{
-                fontFamily: "monospace",
-              
-              }}
+              style={{ fontFamily: "monospace", }}
               className="col s5 brand-logo center black-text"
             >
              {/* <i className="material-icons">code</i> */}
               AJAANZ BATHIK
             </Link>
+            <ul className ="right" >
+            <li ><a  className ="right black-text" href="/">Home</a></li>
+            <li><a className ="right black-text"  href="/about">About</a></li>
+            <li ><a className ="right black-text" href="/contact">Contact</a></li>
+            <li ><a className ="right black-text" href="/login">Sign in</a></li>
+           
+
+
+            </ul>
           </div>
         </nav>
       </div>
