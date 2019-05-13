@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+//import axios from 'axios';   //Use axios to make HTTPRequests within certain action
+
+
+
 class Login extends Component {
   constructor() {
     super();
@@ -7,7 +11,19 @@ class Login extends Component {
       email: "",
       password: "",
       errors: {}
+      
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard"); // push user to dashboard when they login
+    }
+if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
   }
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -18,6 +34,16 @@ const userData = {
       email: this.state.email,
       password: this.state.password
     };
+
+    this.props.history.push("/dashboard");
+
+
+
+    // axios.post('http://localhost:5000/api/users/login',userData)
+    // .then(res => console.log(res.data));
+
+   
+
 console.log(userData);
   };
 render() {
@@ -80,4 +106,6 @@ return (
     );
   }
 }
-export default Login;
+
+
+export default withRouter(Login);

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter} from "react-router-dom";
+//import PropTypes from "prop-types";
+
+
 import axios from 'axios';   //Use axios to make HTTPRequests within certain action
 
 
@@ -13,7 +16,25 @@ class Register extends Component {
       password2: "",
       errors: {}
     };
+
   }
+
+  // componentDidMount() {
+  //   // If logged in and user navigates to Register page, should redirect them to dashboard
+  //   if (this.props.auth.isAuthenticated) {
+  //     this.props.history.push("/dashboard");
+  //   }
+  // }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+
+    }
+  }
+  
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -26,9 +47,13 @@ const newUser = {
       password2: this.state.password2
     };
 
+    this.props.history.push("/login");
+
+
     axios.post('http://localhost:5000/api/users/register', newUser)
     .then(res => console.log(res.data));
 
+  
 console.log(newUser);
   };
 render() {
@@ -122,4 +147,4 @@ return (
     }
   }
 
-  export default Register;
+  export default withRouter(Register);
