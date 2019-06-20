@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-//import axios from 'axios';   //Use axios to make HTTPRequests within certain action
-
+import axios from 'axios';   //Use axios to make HTTPRequests within certain action
 
 
 class Login extends Component {
@@ -39,8 +38,8 @@ const userData = {
 
 
 
-    // axios.post('http://localhost:5000/api/users/login',userData)
-    // .then(res => console.log(res.data));
+    axios.post('http://localhost:5000/api/users/login',userData)
+    .then(res => console.log(res.data));
 
    
 

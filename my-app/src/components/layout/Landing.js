@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Limage from './Limage.jpg';
 
+
 class Landing extends Component {
   render() {
     return (
